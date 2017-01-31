@@ -15,14 +15,15 @@ import be.vdab.entities.Film;
 public class FilmRepository extends AbstractRepository {
     
     private static final String BEGIN_SELECT =
-	    "select id, genreid, titel, voorraad, gereserveerd, prijs "
+	    "select films.id as filmid, genreid, titel, voorraad, gereserveerd, prijs "
 	    + "from films ";
     private static final String FIND_ALL = 
 	    BEGIN_SELECT + "order by titel";
-    private static final String FIND_BY_GENRE =
-	    BEGIN_SELECT + "inner join genres "
-	    	+ "on films.genreid = genres.id "
-	    	+ "where naam = ?";
+    private static final String FIND_BY_GENRE = 
+	    	"on films.genreid = genres.id "
+	    	+ "where naam = ? "
+	    	+ "order by titel";   
+//    private static final String FIND_FILM = "select titel from films where id = ?";
     private static final Logger LOGGER = 
 	    Logger.getLogger(FilmRepository.class.getName());
     
@@ -42,8 +43,10 @@ public class FilmRepository extends AbstractRepository {
     }
     
     private Film resultSetNaarFilm(ResultSet resultSet) throws SQLException {
-	return new Film(resultSet.getLong("id"), resultSet.getLong("genreid"), resultSet.getString("titel"),
-		resultSet.getLong("voorraad"), resultSet.getLong("gereserveerd"), resultSet.getBigDecimal("prijs"));
+	return new Film(
+		resultSet.getLong("filmid"), resultSet.getLong("genreid"), 
+		resultSet.getString("titel"), resultSet.getLong("voorraad"), 
+		resultSet.getLong("gereserveerd"), resultSet.getBigDecimal("prijs"));
     }
     
     public List<Film> findByGenre(String genreNaam) {
@@ -52,8 +55,9 @@ public class FilmRepository extends AbstractRepository {
 	    List<Film> films = new ArrayList<>();
 	    statement.setString(1, genreNaam);
 	    try (ResultSet resultSet = statement.executeQuery()) {
-		while (resultSet.next())
+		while (resultSet.next()) {
 		    films.add(resultSetNaarFilm(resultSet));
+		}
 	    }
 	    return films;
 	} catch (SQLException ex) {
@@ -61,6 +65,38 @@ public class FilmRepository extends AbstractRepository {
 	    throw new RepositoryException(ex);
 	}
     }
+    
+//    public Film findFilm() {
+//	try (Connection connection = dataSource.getConnection();
+//		Statement statement = connection.createStatement();
+//		ResultSet resultSet = statement.executeQuery(FIND_FILM)) {
+//	    Film film = null;
+//	    if (resultSet.next()) {
+//		film = new Film(resultSet.getString("titel"));
+//	    }
+//	    return film;
+//	} catch (SQLException ex) {
+//	    LOGGER.log(Level.SEVERE, "Probleem met database retrovideo", ex);
+//	    throw new RepositoryException(ex);
+//	}
+//    }
+//    
+//    public Film findFilmById(long id) {
+//	try (Connection connection = dataSource.getConnection();
+//		PreparedStatement statement = connection.prepareStatement(FIND_FILM)) {
+//	    Film film = null;
+//	    statement.setLong(1, id);
+//	    try (ResultSet resultSet = statement.executeQuery()) {
+//		if (resultSet.next()) {
+//		    film = new Film(resultSet.getString("titel"));
+//		}
+//	    }
+//	    return film;
+//	} catch (SQLException ex) {
+//	    LOGGER.log(Level.SEVERE, "Probleem met database retrovideo", ex);
+//	    throw new RepositoryException(ex);
+//	}
+//    }
 }
 
 

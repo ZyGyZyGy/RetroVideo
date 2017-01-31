@@ -8,22 +8,26 @@ public class Film {
     private String titel;
     private BigDecimal prijs;
 
-    public Film(long genreId, long voorraad, String titel, long gereserveerd, BigDecimal prijs) {
-	this.genreId = genreId;
-	this.voorraad = voorraad;
-	this.gereserveerd = gereserveerd;
-	this.titel = titel;
-	this.prijs = prijs;
-    }
-
     public Film(long id, long genreId, String titel, long voorraad, long gereserveerd, BigDecimal prijs) {
 	this.id = id;
 	this.genreId = genreId;
+	this.titel = titel;
 	this.voorraad = voorraad;
 	this.gereserveerd = gereserveerd;
-	this.titel = titel;
 	this.prijs = prijs;
     }
+    
+//  public Film(long genreId, String titel, long voorraad, long gereserveerd, BigDecimal prijs) {
+//	this.genreId = genreId;
+//	this.titel = titel;
+//	this.voorraad = voorraad;
+//	this.gereserveerd = gereserveerd;
+//	this.prijs = prijs;
+//  }
+    
+//    public Film(String titel) {
+//	this.titel = titel;
+//    }
 
     public long getId() {
         return id;
