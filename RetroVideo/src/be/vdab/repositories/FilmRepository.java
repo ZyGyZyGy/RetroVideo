@@ -19,11 +19,14 @@ public class FilmRepository extends AbstractRepository {
 	    + "from films ";
     private static final String FIND_ALL = 
 	    BEGIN_SELECT + "order by titel";
-    private static final String FIND_BY_GENRE = 
-	    	"on films.genreid = genres.id "
-	    	+ "where naam = ? "
-	    	+ "order by titel";   
-//    private static final String FIND_FILM = "select titel from films where id = ?";
+    private static final String FIND_BY_GENRE_ID = 
+	    BEGIN_SELECT + "inner join genres "
+	    	+ "on films.genreid = genres.id "
+	    	+ "where genreid = ? "
+	    	+ "order by titel";
+    
+    private static final String FIND_FILM = "select titel from films where id = ?";
+    
     private static final Logger LOGGER = 
 	    Logger.getLogger(FilmRepository.class.getName());
     
@@ -49,11 +52,11 @@ public class FilmRepository extends AbstractRepository {
 		resultSet.getLong("gereserveerd"), resultSet.getBigDecimal("prijs"));
     }
     
-    public List<Film> findByGenre(String genreNaam) {
+    public List<Film> findByGenreId(long genreId) {
 	try (Connection connection = dataSource.getConnection();
-		PreparedStatement statement = connection.prepareStatement(FIND_BY_GENRE)) {
+		PreparedStatement statement = connection.prepareStatement(FIND_BY_GENRE_ID)) {
 	    List<Film> films = new ArrayList<>();
-	    statement.setString(1, genreNaam);
+	    statement.setLong(1, genreId);
 	    try (ResultSet resultSet = statement.executeQuery()) {
 		while (resultSet.next()) {
 		    films.add(resultSetNaarFilm(resultSet));

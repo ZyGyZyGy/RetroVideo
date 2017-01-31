@@ -3,19 +3,19 @@
 <header>
 	<nav>
 		<ul>
-			<li><a href="<c:url value='/aktiefilm.htm'/>">Aktiefilm</a></li>
-			<li><a href="<c:url value='/avontuur.htm'/>">Avontuur</a></li>
-			<li><a href="<c:url value='/cowboyfilm.htm'/>">Cowbowfilm</a></li>
-			<li><a href="<c:url value='/erotiek.htm'/>">Erotiek</a></li>
-			<li><a href="<c:url value='/griezel.htm'/>">Griezel</a></li>
-			<li><a href="<c:url value='/humor.htm'/>">Humor</a></li>
-			<li><a href="<c:url value='/kinderfilm.htm'/>">Kinderfilm</a></li>
-			<li><a href="<c:url value='/oorlog.htm'/>">Oorlog</a></li>
-			<li><a href="<c:url value='/piratenfilm.htm'/>">Piratenfilm</a></li>
-			<li><a href="<c:url value='/sciencefiction.htm'/>">Sciencefiction</a></li>
-			<li><a href="<c:url value='/sentimenteel.htm'/>">Sentimenteel</a></li>
-			<li><a href="<c:url value='/speelfilm.htm'/>">Speelfilm</a></li>
-			<li><a href="<c:url value='/thriller.htm'/>">Thriller</a></li>
+			<li><a href="<c:url value='/films?genreid=1'/>">Aktiefilm</a></li>
+			<li><a href="<c:url value='/films?genreid=2'/>">Avontuur</a></li>
+			<li><a href="<c:url value='/films?genreid=3'/>">Cowbowfilm</a></li>
+			<li><a href="<c:url value='/films?genreid=4'/>">Erotiek</a></li>
+			<li><a href="<c:url value='/films?genreid=5'/>">Griezel</a></li>
+			<li><a href="<c:url value='/films?genreid=6'/>">Humor</a></li>
+			<li><a href="<c:url value='/films?genreid=7'/>">Kinderfilm</a></li>
+			<li><a href="<c:url value='/films?genreid=8'/>">Oorlog</a></li>
+			<li><a href="<c:url value='/films?genreid=9'/>">Piratenfilm</a></li>
+			<li><a href="<c:url value='/films?genreid=10'/>">Sciencefiction</a></li>
+			<li><a href="<c:url value='/films?genreid=11'/>">Sentimenteel</a></li>
+			<li><a href="<c:url value='/films?genreid=12'/>">Speelfilm</a></li>
+			<li><a href="<c:url value='/films?genreid=13'/>">Thriller</a></li>
 		</ul>
 	</nav>
 </header>

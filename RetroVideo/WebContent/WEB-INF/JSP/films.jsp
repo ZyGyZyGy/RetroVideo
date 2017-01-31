@@ -8,11 +8,21 @@
 </head> 
 <body> 
 <h1>Reservaties</h1>
-<vdab:menu/>
+<header>
+	<nav>
+		<ul>
+		<c:forEach var="genre" items="${genres}">
+			<li><a href="<c:url value='/films?genreid=${genre.id}'/>">${genre.naam}</a></li>
+		</c:forEach>
+		</ul>
+	</nav>
+</header>
+<c:if test="${not empty films}">
 	<ul class="zonderBolletje">
 		<c:forEach var="film" items="${films}">
-			<li><img src=" <c:url value='/images/${film.id}.jpg' /> " alt="${film.titel}"></li>
+			<li><img class="filmPoster" src=" <c:url value='/images/${film.id}.jpg' /> " alt="${film.titel}"></li>
 		</c:forEach>
 	</ul>
+</c:if>
 </body> 
 </html> 
