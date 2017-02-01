@@ -76,7 +76,10 @@ public class Film {
     public void setPrijs(BigDecimal prijs) {
         this.prijs = prijs;
     }
-    
-    
+
+    public String getReservatieMogelijk() {
+        return gereserveerd < voorraad ? titel + "\n - reservatie mogelijk" : 
+            titel + "\n -  reservatie NIET mogelijk";
+    }
 
 }

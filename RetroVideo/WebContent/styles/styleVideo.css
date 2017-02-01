@@ -65,13 +65,18 @@ nav ul {
 
 nav li {
 	display: inline;
+	color: yellow;
+	font-weight: bold;
+	padding-left: 0.5em;
+	text-decoration: none;
+	vertical-align: middle;
 }
 
 nav li a {
 	color: white;
 	font-weight: bold;
 	padding-left: 0.5em;
-	text-decoration: none;
+	text-decoration: underline;
 	vertical-align: middle;
 }
 

@@ -24,17 +24,19 @@ public class FilmServlet extends HttpServlet {
     private final GenreRepository genreRepository = new GenreRepository();
     private final FilmRepository filmRepository = new FilmRepository();
 
-    @Resource(name = GenreRepository.JNDI_NAME)
+    @Resource(name = FilmRepository.JNDI_NAME)
     void setDataSource(DataSource dataSource) {
 	genreRepository.setDataSource(dataSource);
+	filmRepository.setDataSource(dataSource);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-	if (request.getParameter("id") != null) {
-	    long id = Long.parseLong(request.getParameter("id"));
+	if (request.getParameter("genreid") != null) {
+	    long id = Long.parseLong(request.getParameter("genreid"));
 	    List<Film> films = filmRepository.findByGenreId(id);
-	    request.setAttribute("film", films);
+	    request.setAttribute("films", films);
+	    request.setAttribute("geselecteeredeGenreId", id);
 	}
 	Set<Genre> genres = genreRepository.findAll();
 	request.setAttribute("genres", genres);

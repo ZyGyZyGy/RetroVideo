@@ -12,7 +12,21 @@
 	<nav>
 		<ul>
 		<c:forEach var="genre" items="${genres}">
-			<li><a href="<c:url value='/films?genreid=${genre.id}'/>">${genre.naam}</a></li>
+			<c:choose>
+				<c:when test="${empty geselecteeredeGenreId}">
+					<li><a href="<c:url value='/films.htm?genreid=${genre.id}'/>">${genre.naam}</a></li>
+				</c:when>
+				<c:otherwise>
+					<c:choose>
+						<c:when test="${geselecteeredeGenreId == genre.id}">
+							<li>${genre.naam}</li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="<c:url value='/films.htm?genreid=${genre.id}'/>">${genre.naam}</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:otherwise>
+			</c:choose>
 		</c:forEach>
 		</ul>
 	</nav>
@@ -20,7 +34,8 @@
 <c:if test="${not empty films}">
 	<ul class="zonderBolletje">
 		<c:forEach var="film" items="${films}">
-			<li><img class="filmPoster" src=" <c:url value='/images/${film.id}.jpg' /> " alt="${film.titel}"></li>
+			<li><img class="filmPoster" src=" <c:url value='/images/${film.id}.jpg' /> " alt="${film.titel}"
+			title="${film.reservatieMogelijk}"></li>
 		</c:forEach>
 	</ul>
 </c:if>
