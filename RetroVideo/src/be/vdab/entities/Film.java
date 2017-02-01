@@ -81,5 +81,9 @@ public class Film {
         return gereserveerd < voorraad ? titel + "\n - reservatie mogelijk" : 
             titel + "\n -  reservatie NIET mogelijk";
     }
+    
+    public long getBeschikbaar() {
+	return voorraad - gereserveerd;
+    }
 
 }

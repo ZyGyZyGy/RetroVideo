@@ -58,6 +58,7 @@ input[type='checkbox'] {
 	display: inline;
 }
 
+/*---------------------------------------------------------- Menu ----------------------------------------------------------*/
 nav ul {
 	background-color: blue;
 	padding: 0.4em 0;
@@ -112,9 +113,41 @@ ul.zebra li:nth-child(odd):hover, ul.zebra li:nth-child(even):hover {
 	list-style: none;
 	display: inline;
 }
-
+/*---------------------------------------------------------- Film poster ----------------------------------------------------------*/
 .filmPoster {
 	height: 320px;
 	width: 210px;
 	border: 2px solid black;
 }
+
+/*---------------------------------------------------------- Tabel ----------------------------------------------------------*/
+table {
+	width:50%;
+	border-collapse: collapse;
+}
+td, th{
+    font-size:1em;
+    border:1px solid #968461;
+    padding:3px;
+}
+th 
+{
+    font-weight:bold;
+    text-align:center;	
+    background-color:blue;
+    color:#ffffff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

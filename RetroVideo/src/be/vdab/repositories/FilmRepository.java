@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,8 +25,8 @@ public class FilmRepository extends AbstractRepository {
 	    	+ "on films.genreid = genres.id "
 	    	+ "where genreid = ? "
 	    	+ "order by titel";
-    
-    private static final String FIND_FILM = "select titel from films where id = ?";
+    private static final String FIND_FILM_BY_ID = 
+	    BEGIN_SELECT + "where id = ?";
     
     private static final Logger LOGGER = 
 	    Logger.getLogger(FilmRepository.class.getName());
@@ -36,7 +37,7 @@ public class FilmRepository extends AbstractRepository {
 		ResultSet resultSet = statement.executeQuery(FIND_ALL)) {
 	    List<Film> films = new ArrayList<>();
 	    while (resultSet.next()) {
-		films.add(resultSetNaarFilm(resultSet));
+		films.add(resultRijNaarFilm(resultSet));
 	    }
 	    return films;
 	} catch (SQLException ex) {
@@ -45,7 +46,7 @@ public class FilmRepository extends AbstractRepository {
 	}
     }
     
-    private Film resultSetNaarFilm(ResultSet resultSet) throws SQLException {
+    private Film resultRijNaarFilm(ResultSet resultSet) throws SQLException {
 	return new Film(
 		resultSet.getLong("filmid"), resultSet.getLong("genreid"), 
 		resultSet.getString("titel"), resultSet.getLong("voorraad"), 
@@ -59,7 +60,7 @@ public class FilmRepository extends AbstractRepository {
 	    statement.setLong(1, genreId);
 	    try (ResultSet resultSet = statement.executeQuery()) {
 		while (resultSet.next()) {
-		    films.add(resultSetNaarFilm(resultSet));
+		    films.add(resultRijNaarFilm(resultSet));
 		}
 	    }
 	    return films;
@@ -84,22 +85,21 @@ public class FilmRepository extends AbstractRepository {
 //	}
 //    }
 //    
-//    public Film findFilmById(long id) {
-//	try (Connection connection = dataSource.getConnection();
-//		PreparedStatement statement = connection.prepareStatement(FIND_FILM)) {
-//	    Film film = null;
-//	    statement.setLong(1, id);
-//	    try (ResultSet resultSet = statement.executeQuery()) {
-//		if (resultSet.next()) {
-//		    film = new Film(resultSet.getString("titel"));
-//		}
-//	    }
-//	    return film;
-//	} catch (SQLException ex) {
-//	    LOGGER.log(Level.SEVERE, "Probleem met database retrovideo", ex);
-//	    throw new RepositoryException(ex);
-//	}
-//    }
+    public Optional<Film> findFilmById(long id) {
+	try (Connection connection = dataSource.getConnection();
+		PreparedStatement statement = connection.prepareStatement(FIND_FILM_BY_ID)) {
+	    statement.setLong(1, id);
+	    try (ResultSet resultSet = statement.executeQuery()) {
+		if (resultSet.next()) {
+		    return Optional.of(resultRijNaarFilm(resultSet));
+		}
+		return Optional.empty();
+	    }
+	} catch (SQLException ex) {
+	    LOGGER.log(Level.SEVERE, "Probleem met database retrovideo", ex);
+	    throw new RepositoryException(ex);
+	}
+    }
 }
 
 

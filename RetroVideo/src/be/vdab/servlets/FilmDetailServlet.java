@@ -1,8 +1,7 @@
-// NIET MEER NODIG: TO BE DELETED 
 package be.vdab.servlets;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -15,12 +14,11 @@ import javax.sql.DataSource;
 import be.vdab.entities.Film;
 import be.vdab.repositories.FilmRepository;
 
-@WebServlet("/aktiefilm.htm")
-public class AktiefilmServlet extends HttpServlet {
+@WebServlet("/films/detail.htm")
+public class FilmDetailServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final String VIEW = "/WEB-INF/JSP/films.jsp";
+    private static final String VIEW = "/WEB-INF/JSP/filmdetail.jsp";
     private final FilmRepository filmRepository = new FilmRepository();
-    private static final long GENRE_ID = 1;
 
     @Resource(name = FilmRepository.JNDI_NAME)
     void setDataSource(DataSource dataSource) {
@@ -29,11 +27,18 @@ public class AktiefilmServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-	List<Film> films = filmRepository.findByGenreId(GENRE_ID);
-	request.setAttribute("films", films);
-//	Film film = filmRepository.findFilmById(1);
-//	request.setAttribute("film", film);
+	if (request.getParameter("id") != null) {
+	    long id = Long.parseLong(request.getParameter("id"));
+	    Optional<Film> optionalFilm = filmRepository.findFilmById(id);
+	    if (optionalFilm.isPresent()) {
+		Film film = optionalFilm.get();
+		request.setAttribute("film", film);
+	    }
+	}
 	request.getRequestDispatcher(VIEW).forward(request, response);
     }
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	    throws ServletException, IOException {
+    }
 }
