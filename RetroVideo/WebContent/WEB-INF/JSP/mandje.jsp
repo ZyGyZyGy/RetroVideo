@@ -10,7 +10,7 @@
 	<a href=" <c:url value='/films.htm'/> " title="terug naar beginpagina">Reserveren</a>
 	<a href=" <c:url value='/klant.htm'/> " title="naar klantengegevens">Klant</a>
 	<h1>Mandje</h1>
-	<form method="post" action="/films/verwijderen.htm">
+	<form method="post" action=<c:url value="/films/verwijderen.htm"/>>
 		<table>
 			<thead>
 				<tr>
@@ -31,6 +31,7 @@
 			</tfoot>
 		</table>
 	</form>
+	<div class="fout">${verwijderFout}</div>
 	<script>
 		document.getElementById('verwijderForm').onsubmit = function() {
 			document.getElementById('verwijderKnop').disabled = true;

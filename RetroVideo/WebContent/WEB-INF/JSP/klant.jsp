@@ -12,27 +12,35 @@
 	<h1>Klant</h1>
 	<form>
 		<label>Familienaam bevat:
-		<input type="text" name="familienaam" required autofocus>
+		<input type="text" name="familienaam" value="${param.familienaam}" required autofocus>
 		</label>
-		<div>${fout}</div>
 		<input type="submit" value="Zoeken">
 	</form>
-	<c:if test="${not empty klanten}">
-		<table>
-			<thead>
-				<tr>
-					<th>Naam</th><th>Straat - Huisnummer</th><th>Postcode</th><th>Gemeente</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="klant" items="${klanten}">
+	<c:choose>
+		<c:when test="${not empty klanten}">
+			<table>
+				<thead>
 					<tr>
-						<td>${klant.voornaam}&nbsp;${klant.familienaam}</td><td>${klant.straatNummer}</td><td>${klant.postcode}</td><td>${klant.gemeente}</td>
+						<th>Naam</th><th>Straat - Huisnummer</th><th>Postcode</th><th>Gemeente</th>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</c:if>
+				</thead>
+				<tbody>
+					<c:forEach var="klant" items="${klanten}">
+						<tr>
+							<c:url value="/klant/bevestigen.htm" var="bevestigenURL">
+								<c:param name="id" value="${klant.id}"/>
+							</c:url>
+							<td><a href=" <c:out value='${bevestigenURL}'/> ">${klant.voornaam}&nbsp;${klant.familienaam}</a></td><td>${klant.straatNummer}</td><td>${klant.postcode}</td><td>${klant.gemeente}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</c:when>
+		<c:otherwise>
+			<div class="fout">${familienaamFout}</div>
+			<div class="fout">${fout}</div>
+		</c:otherwise>
+	</c:choose>
 	<script>
 		document.getElementById('verwijderForm').onsubmit = function() {
 			document.getElementById('verwijderKnop').disabled = true;

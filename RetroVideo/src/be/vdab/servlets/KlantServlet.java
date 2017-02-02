@@ -28,9 +28,13 @@ public class KlantServlet extends HttpServlet {
 	String familienaam = request.getParameter("familienaam");
 	if (familienaam != null) {
 	    if (familienaam.isEmpty()) {
-		request.setAttribute("fout", "tik minstens een letter");
+		request.setAttribute("fout", "Tik minstens een letter");
 	    } else {
-		request.setAttribute("klanten", klantRepository.findByFamilienaam(familienaam));
+		if (klantRepository.findByFamilienaam(familienaam).isEmpty()) {
+		    request.setAttribute("familienaamFout", "Geen familienaam gevonden");
+		} else {
+		    request.setAttribute("klanten", klantRepository.findByFamilienaam(familienaam));
+		}
 	    }
 	}
 	request.getRequestDispatcher(VIEW).forward(request, response);

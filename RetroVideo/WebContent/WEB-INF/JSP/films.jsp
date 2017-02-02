@@ -38,7 +38,7 @@
 	<ul class="zonderBolletje">
 		<c:forEach var="film" items="${films}">
 			<c:url value="/films/detail.htm" var="detailURL">
-				<c:param name="id" value="${film.id}"></c:param>
+				<c:param name="id" value="${film.id}"/>
 			</c:url>
 			<li><a href=" <c:out value='${detailURL}'/> "><img class="filmPoster" src=" <c:url value='/images/${film.id}.jpg' /> " alt="${film.titel}"
 			title="${film.reservatieMogelijk}"></a></li>
