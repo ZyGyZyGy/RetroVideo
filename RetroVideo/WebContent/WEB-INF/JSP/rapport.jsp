@@ -9,6 +9,11 @@
 <body> 
 	<a href=" <c:url value='/films.htm'/> " title="terug naar beginpagina">Reserveren</a>
 	<h1>Rapport</h1>
-	<p>De reservatie is ${gelukt ? : "OK" : "MISLUKT"}
+	<p>De reservatie is ${empty mislukteFilms ? : "OK" : "MISLUKT"}
+	<p>De reservatie van deze films is mislukt:<br>
+		<c:forEach var="film" items="mislukteFilms">
+			${film.titel}
+		</c:forEach>
+	</p>
 </body> 
 </html> 

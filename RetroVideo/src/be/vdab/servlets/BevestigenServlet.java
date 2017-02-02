@@ -1,8 +1,9 @@
 package be.vdab.servlets;
 
 import java.io.IOException;
-import java.time.LocalDate;
+import java.util.LinkedHashSet;
 import java.util.Set;
+
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import be.vdab.entities.Film;
 import be.vdab.entities.Klant;
 import be.vdab.repositories.FilmRepository;
 import be.vdab.repositories.KlantRepository;
@@ -56,12 +58,29 @@ public class BevestigenServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
 	HttpSession session = request.getSession();
+//	if (session != null) {
+//	    @SuppressWarnings("unchecked")
+//	    Set<Long> mandje = (Set<Long>) session.getAttribute(MANDJE);
+//	    long klantid = ((Klant) session.getAttribute("klant")).getId();
+//	    boolean gelukt = filmRepository.recordToevoegen(klantid, mandje);
+//	    session.setAttribute("rapport", gelukt);
+//	}
+	
 	if (session != null) {
 	    @SuppressWarnings("unchecked")
 	    Set<Long> mandje = (Set<Long>) session.getAttribute(MANDJE);
 	    long klantid = ((Klant) session.getAttribute("klant")).getId();
-	    boolean gelukt = filmRepository.recordToevoegen(klantid, mandje, LocalDate.now());
-	    session.setAttribute("rapport", gelukt);
+	    Set<Film> mislukteFilms = new LinkedHashSet<>();
+	    for (long filmid : mandje) {
+		Film film = filmRepository.findFilmById(filmid).get();
+		if (film.getVoorraad() > film.getGereserveerd()) {
+		    filmRepository.updatereservaties(klantid, filmid);
+		    filmRepository.updateGereserveerd(filmid);
+		} else {
+		    mislukteFilms.add(film);
+		}
+		session.setAttribute("mislukteFilms", mislukteFilms);
+	    }
 	}
 	response.sendRedirect(String.format(REDIRECT_URL, request.getContextPath()));
     }
