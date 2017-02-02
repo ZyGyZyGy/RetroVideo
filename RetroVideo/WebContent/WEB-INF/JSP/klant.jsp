@@ -30,7 +30,7 @@
 							<c:url value="/klant/bevestigen.htm" var="bevestigenURL">
 								<c:param name="id" value="${klant.id}"/>
 							</c:url>
-							<td><a href=" <c:out value='${bevestigenURL}'/> ">${klant.voornaam}&nbsp;${klant.familienaam}</a></td><td>${klant.straatNummer}</td><td>${klant.postcode}</td><td>${klant.gemeente}</td>
+							<td><a href=" <c:out value='${bevestigenURL}'/> ">${klant.naam}</a></td><td>${klant.straatNummer}</td><td>${klant.postcode}</td><td>${klant.gemeente}</td>
 						</tr>
 					</c:forEach>
 				</tbody>

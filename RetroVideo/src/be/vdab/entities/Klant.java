@@ -61,5 +61,9 @@ public class Klant {
     public void setGemeente(String gemeente) {
 	this.gemeente = gemeente;
     }
+    
+    public String getNaam() {
+	return voornaam + " " + familienaam;
+    }
 
 }

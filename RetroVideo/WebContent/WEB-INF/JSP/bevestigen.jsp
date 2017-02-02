@@ -4,15 +4,15 @@
 <!doctype html>
 <html lang="nl">
 <head>
-<vdab:head title="Mandje" />
+<vdab:head title="Bevestigen" />
 </head>
 <body>
 	<a href=" <c:url value='/films.htm'/> " title="terug naar beginpagina">Reserveren</a>
 	<a href=" <c:url value='/films/reserveren.htm'/> " title="naar mandje">Mandje</a>
 	<a href=" <c:url value='/klant.htm'/> " title="naar klantengegevens">Klant</a>
 	<h1>Bevestigen</h1>
-	<p>${aantalFilmsInMandje}&nbsp;${aantalFilmsInMandje == 1 ? "film" : "films"} voor ${klantNaam}</p>
-	<form method="post" action="">
+	<p>${not empty aantalFilmsInMandje ? aantalFilmsInMandje : 0}&nbsp;${aantalFilmsInMandje == 1 ? "film" : "films"} voor ${klant.naam}</p>
+	<form method="post">
 		<input type="submit" value="Bevestigen">
 	</form>
 </body>
