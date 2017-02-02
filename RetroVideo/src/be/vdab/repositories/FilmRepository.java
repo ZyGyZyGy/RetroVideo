@@ -30,8 +30,8 @@ public class FilmRepository extends AbstractRepository {
     private static final String FIND_FILM_BY_ID = 
 	    BEGIN_SELECT + "where id = ?";
     private static final String INSERT_RECORD =
-	    "insert into reservaties(klantid, filmid) "
-          + "values(?, ?)";
+	    "insert into reservaties(klantid, filmid, reservatieDatum) "
+          + "values(?, ?, ?)";
     private static final String UPDATE_FILM =
 	    "update films "
 	  + "set gereserveerd = gereserveerd + 1 "
@@ -95,39 +95,41 @@ public class FilmRepository extends AbstractRepository {
 	}
     }
     
-//    public boolean recordToevoegen(long klantid, Set<Long> mandje) {
-//	try (Connection connection = dataSource.getConnection();
-//		PreparedStatement statement = connection.prepareStatement(INSERT_RECORD)) {
-//	    connection.setAutoCommit(false);
-//	    connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
-//	    Date vandaag = java.sql.Date.valueOf(LocalDate.now());
-//	    boolean gelukt = true;
-//	    for (long filmid : mandje) {
-//		statement.setLong(1, klantid);
-//		statement.setLong(2, filmid);
-//		statement.setDate(3, vandaag);
-//		statement.executeUpdate();
-//		updateGereserveerd(filmid);
-//		if (findFilmById(filmid).isPresent()) {
-//		    Film film = findFilmById(filmid).get();
-//		    long voorraad = film.getVoorraad();
-//		    long gereserveerd = film.getGereserveerd();
-//		    if (voorraad > gereserveerd) {
-//			connection.commit();
-//		    } else {
-//			gelukt = false;
-//		    }
-//		}
-//	    }
-//	    return gelukt;
-//	} catch (SQLException ex) {
-//	    LOGGER.log(Level.SEVERE, "Probleem met database retrovideo", ex);
-//	    throw new RepositoryException(ex);
-//	}
-//    }
+    /*
+    public boolean recordToevoegen(long klantid, Set<Long> mandje) {
+	try (Connection connection = dataSource.getConnection();
+		PreparedStatement statement = connection.prepareStatement(INSERT_RECORD)) {
+	    connection.setAutoCommit(false);
+	    connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+	    Date vandaag = java.sql.Date.valueOf(LocalDate.now());
+	    boolean gelukt = true;
+	    for (long filmid : mandje) {
+		statement.setLong(1, klantid);
+		statement.setLong(2, filmid);
+		statement.setDate(3, vandaag);
+		statement.executeUpdate();
+		updateGereserveerd(filmid);
+		if (findFilmById(filmid).isPresent()) {
+		    Film film = findFilmById(filmid).get();
+		    long voorraad = film.getVoorraad();
+		    long gereserveerd = film.getGereserveerd();
+		    if (voorraad > gereserveerd) {
+			connection.commit();
+		    } else {
+			gelukt = false;
+		    }
+		}
+	    }
+	    return gelukt;
+	} catch (SQLException ex) {
+	    LOGGER.log(Level.SEVERE, "Probleem met database retrovideo", ex);
+	    throw new RepositoryException(ex);
+	}
+    }
+    */
     
     
-    public void updatereservaties(long klantid, long filmid) {
+    public void updateReservaties(long klantid, long filmid) {
 	try (Connection connection = dataSource.getConnection();
 		PreparedStatement statement = connection.prepareStatement(INSERT_RECORD)) {
 	    connection.setAutoCommit(false);

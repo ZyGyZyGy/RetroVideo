@@ -45,11 +45,10 @@ public class BevestigenServlet extends HttpServlet {
 		Set<Long> mandje = (Set<Long>) session.getAttribute(MANDJE);
 		request.setAttribute("aantalFilmsInMandje", 
 			mandje.stream()
-			.map(filmId -> filmRepository.findFilmById(filmId))
-			.filter(optionalId -> optionalId.isPresent())
-			.map(optionalId -> optionalId.get())
-			.count()
-			);
+				.map(filmId -> filmRepository.findFilmById(filmId))
+				.filter(optionalId -> optionalId.isPresent())
+				.map(optionalId -> optionalId.get())
+				.count());
 	    }
 	}
 	request.getRequestDispatcher(VIEW).forward(request, response);
@@ -57,15 +56,7 @@ public class BevestigenServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-	HttpSession session = request.getSession();
-//	if (session != null) {
-//	    @SuppressWarnings("unchecked")
-//	    Set<Long> mandje = (Set<Long>) session.getAttribute(MANDJE);
-//	    long klantid = ((Klant) session.getAttribute("klant")).getId();
-//	    boolean gelukt = filmRepository.recordToevoegen(klantid, mandje);
-//	    session.setAttribute("rapport", gelukt);
-//	}
-	
+	HttpSession session = request.getSession();	
 	if (session != null) {
 	    @SuppressWarnings("unchecked")
 	    Set<Long> mandje = (Set<Long>) session.getAttribute(MANDJE);
@@ -74,7 +65,7 @@ public class BevestigenServlet extends HttpServlet {
 	    for (long filmid : mandje) {
 		Film film = filmRepository.findFilmById(filmid).get();
 		if (film.getVoorraad() > film.getGereserveerd()) {
-		    filmRepository.updatereservaties(klantid, filmid);
+		    filmRepository.updateReservaties(klantid, filmid);
 		    filmRepository.updateGereserveerd(filmid);
 		} else {
 		    mislukteFilms.add(film);

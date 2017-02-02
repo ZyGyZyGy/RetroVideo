@@ -38,19 +38,19 @@ public class FilmReserverenServlet extends HttpServlet {
 	    if (mandje != null) {
 		request.setAttribute("filmsInMandje", 
 			mandje.stream()
-			.map(id -> filmRepository.findFilmById(id))
-			.filter(optionalId -> optionalId.isPresent())
-			.map(optionalId -> optionalId.get())
-			.collect(Collectors.toList())
-			);
+        			.map(id -> filmRepository.findFilmById(id))
+        			.filter(optionalId -> optionalId.isPresent())
+        			.map(optionalId -> optionalId.get())
+        			.collect(Collectors.toList())
+        			);
 		request.setAttribute("totaal",
 			mandje.stream()
-			.map(id -> filmRepository.findFilmById(id))
-			.filter(optionalId -> optionalId.isPresent())
-			.map(optionalId -> optionalId.get())
-			.map(film -> film.getPrijs())
-			.reduce(BigDecimal.ZERO, (vorigeSom, prijs) -> vorigeSom.add(prijs))
-			);
+        			.map(id -> filmRepository.findFilmById(id))
+        			.filter(optionalId -> optionalId.isPresent())
+        			.map(optionalId -> optionalId.get())
+        			.map(film -> film.getPrijs())
+        			.reduce(BigDecimal.ZERO, (vorigeSom, prijs) -> vorigeSom.add(prijs))
+        			);
 	    }
 	}
 	request.getRequestDispatcher(VIEW).forward(request, response);

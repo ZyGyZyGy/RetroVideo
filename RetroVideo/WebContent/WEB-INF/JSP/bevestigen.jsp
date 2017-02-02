@@ -12,8 +12,10 @@
 	<a href=" <c:url value='/klant.htm'/> " title="naar klantengegevens">Klant</a>
 	<h1>Bevestigen</h1>
 	<p>${not empty aantalFilmsInMandje ? aantalFilmsInMandje : 0}&nbsp;${aantalFilmsInMandje == 1 ? "film" : "films"} voor ${klant.naam}</p>
-	<form method="post">
-		<input type="submit" value="Bevestigen">
-	</form>
+	<c:if test="${not empty aantalFilmsInMandje}">
+		<form method="post">
+			<input type="submit" value="Bevestigen">
+		</form>
+	</c:if>
 </body>
 </html>
