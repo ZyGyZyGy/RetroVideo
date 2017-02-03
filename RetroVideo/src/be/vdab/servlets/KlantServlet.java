@@ -27,9 +27,10 @@ public class KlantServlet extends HttpServlet {
 	    throws ServletException, IOException {
 	String familienaam = request.getParameter("familienaam");
 	if (familienaam != null) {
-	    if (familienaam.isEmpty()) {
+	    if (familienaam.trim().isEmpty()) {
 		request.setAttribute("fout", "Tik minstens een letter");
 	    } else {
+		familienaam = familienaam.trim();
 		if (klantRepository.findByFamilienaam(familienaam).isEmpty()) {
 		    request.setAttribute("familienaamFout", "Geen familienaam gevonden");
 		} else {

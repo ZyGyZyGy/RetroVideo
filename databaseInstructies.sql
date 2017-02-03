@@ -31,10 +31,6 @@ from klanten
 where familienaam like '%?%';
 
 
-select *
-from reservaties;
-
-
 insert into reservaties(klantid, filmid, reservatieDatum)
 values(?, ?, ?);
 
@@ -44,7 +40,27 @@ values(1, 2, curdate());
 
 update films
 set gereserveerd = gereserveerd + 1
-where id = ?
+where id = ?;
+
+
+select *
+from reservaties;
+
+
+delete from reservaties
+where klantid > 0;
+
+
+select *
+from films;
+
+
+update films
+set gereserveerd = 0
+where gereserveerd > 0;
+
+
+
 
 
 
