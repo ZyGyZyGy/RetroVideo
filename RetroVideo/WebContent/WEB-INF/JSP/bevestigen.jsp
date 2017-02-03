@@ -13,9 +13,23 @@
 	<h1>Bevestigen</h1>
 	<p>${not empty aantalFilmsInMandje ? aantalFilmsInMandje : 0}&nbsp;${aantalFilmsInMandje == 1 ? "film" : "films"} voor ${klant.naam}</p>
 	<c:if test="${not empty aantalFilmsInMandje}">
-		<form method="post">
-			<input type="submit" value="Bevestigen">
+		<form method="post" id="toevoegform">
+			<input type="submit" value="Bevestigen" id="toevoegknop">
 		</form>
 	</c:if>
+	<script>
+		document.getElementById('toevoegform').onsubmit = function() {
+			document.getElementById('toevoegknop').disabled = true;
+		};
+	</script>
+	<script>
+		document.getElementById('toevoegform').onsubmit = function() {
+			if (!navigator.cookieEnabled) {
+				alert("Dit werkt enkel als cookies aanstaan");
+				return false;
+			}
+			document.getElementById('toevoegknop').disabled = true;
+		};
+	</script>
 </body>
 </html>

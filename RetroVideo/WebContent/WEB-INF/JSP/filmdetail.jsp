@@ -25,11 +25,20 @@
 	</c:url>
 	<c:if test="${film.beschikbaar > 0}">
 		<form method="post" action="${mandjeURL}" id="toevoegform">
-			<input type="submit" value="In mandje">
+			<input type="submit" value="In mandje" id="toevoegknop">
 		</form>
 	</c:if>
 	<script>
 		document.getElementById('toevoegform').onsubmit = function() {
+			document.getElementById('toevoegknop').disabled = true;
+		};
+	</script>
+	<script>
+		document.getElementById('toevoegform').onsubmit = function() {
+			if (!navigator.cookieEnabled) {
+				alert("Dit werkt enkel als cookies aanstaan");
+				return false;
+			}
 			document.getElementById('toevoegknop').disabled = true;
 		};
 	</script>
