@@ -56,22 +56,25 @@ public class BevestigenServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-	HttpSession session = request.getSession();	
+	HttpSession session = request.getSession();
 	if (session != null) {
 	    @SuppressWarnings("unchecked")
 	    Set<Long> mandje = (Set<Long>) session.getAttribute(MANDJE);
 	    long klantid = ((Klant) session.getAttribute("klant")).getId();
 	    Set<Film> mislukteFilms = new LinkedHashSet<>();
-	    for (long filmid : mandje) {
-		Film film = filmRepository.findFilmById(filmid).get();
-		if (film.getVoorraad() > film.getGereserveerd()) {
-		    filmRepository.updateReservaties(klantid, filmid);
-		    filmRepository.updateGereserveerd(filmid);
-		} else {
-		    mislukteFilms.add(film);
-		}
-		session.setAttribute("mislukteFilms", mislukteFilms);
-	    }
+//	    for (long filmid : mandje) {
+//		Film film = filmRepository.findFilmById(filmid).get();
+//		if (film.getVoorraad() > film.getGereserveerd()) {
+//		    filmRepository.updateReservaties(klantid, filmid);
+//		    filmRepository.updateGereserveerd(filmid);
+//		} else {
+//		    mislukteFilms.add(film);
+//		}
+//		session.setAttribute("mislukteFilms", mislukteFilms);
+//	    }
+	    mislukteFilms = filmRepository.recordToevoegen(klantid, mandje);
+	    session.setAttribute("mislukteFilms", mislukteFilms);
+
 	}
 	response.sendRedirect(String.format(REDIRECT_URL, request.getContextPath()));
     }

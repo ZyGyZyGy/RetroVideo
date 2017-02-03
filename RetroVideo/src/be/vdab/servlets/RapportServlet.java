@@ -23,8 +23,8 @@ public class RapportServlet extends HttpServlet {
 	if (session != null) {
 	    @SuppressWarnings("unchecked")
 	    Set<Film> mislukteFilms = (Set<Film>) session.getAttribute("mislukteFilms");
-	    request.setAttribute("mislukteFilms", mislukteFilms);
-//	    session.invalidate();
+	    request.setAttribute("failedFilms", mislukteFilms);
+	    session.invalidate();
 	}
 	request.getRequestDispatcher(VIEW).forward(request, response);
     }
