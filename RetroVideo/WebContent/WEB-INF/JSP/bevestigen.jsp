@@ -25,7 +25,7 @@
 	<script>
 		document.getElementById('toevoegform').onsubmit = function() {
 			if (!navigator.cookieEnabled) {
-				alert("Dit werkt enkel als cookies aanstaan");
+				alert("Dit werkt enkel als cookies aan staan");
 				return false;
 			}
 			document.getElementById('toevoegknop').disabled = true;
