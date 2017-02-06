@@ -1,6 +1,6 @@
 body {
 	background-color: lightgrey;
-	color: #5A0000;
+	color: #400000;
 	font-family: sans-serif;
 }
 
@@ -46,7 +46,7 @@ input {
 	font-size: 1.1em;
 }
 
-input:focus,textarea:focus,select:focus {
+input:focus, textarea:focus, select:focus {
 	background-color: #FFFFD6
 }
 
@@ -60,7 +60,7 @@ input[type='checkbox'] {
 
 /*---------------------------------------------------------- Menu ----------------------------------------------------------*/
 nav ul {
-	background-color: blue;
+	background-color: #000080;
 	padding: 0.4em 0;
 }
 
@@ -109,7 +109,7 @@ ul.zebra li:nth-child(odd):hover, ul.zebra li:nth-child(even):hover {
 	background-color: #ccff00;
 }
 
-.zonderBolletje li{
+.zonderBolletje li {
 	list-style: none;
 	display: inline;
 }
@@ -122,37 +122,29 @@ ul.zebra li:nth-child(odd):hover, ul.zebra li:nth-child(even):hover {
 
 /*---------------------------------------------------------- Tabel ----------------------------------------------------------*/
 table {
-	width:50%;
+	width: 50%;
 	border-collapse: collapse;
 }
-td, th{
-    font-size:1em;
-    border:1px solid #968461;
-    padding:3px;
-}
-th 
-{
-    font-weight:bold;
-    text-align:center;	
-    background-color:blue;
-    color:#ffffff;
+
+td, th {
+	font-size: 1em;
+	border: 1px solid #968461;
+	padding: 3px;
 }
 
+th {
+	font-weight: bold;
+	text-align: center;
+	background-color: #000080;
+	color: #ffffff;
+}
 
 .fout {
 	font-weight: bold;
 	color: red;
 }
 
-
 /*---------------------------------------------------------- 404, 500, DBfout ----------------------------------------------------------*/
 .foutpagina {
 	background-color: white;
 }
-
-
-
-
-
-
-
