@@ -65,7 +65,7 @@ where klantid > 0;
 
 
 -- FILMS
-select id, titel, voorraad, gereserveerd
+select titel, voorraad, gereserveerd
 from films;
 
 select *
