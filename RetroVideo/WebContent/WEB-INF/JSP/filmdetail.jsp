@@ -1,6 +1,7 @@
 <%@page contentType='text/html' pageEncoding='UTF-8' trimDirectiveWhitespaces ='true'%>
 <%@taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>  
 <%@taglib prefix='vdab' uri='http://vdab.be/tags' %> 
+<%@taglib prefix='fmt' uri='http://java.sun.com/jsp/jstl/fmt'%>
 <!doctype html>
 <html lang="nl">
 <head>
@@ -12,7 +13,7 @@
 	<img class="filmPoster" src=" <c:url value='/images/${film.id}.jpg' /> " alt="${film.titel}">
 	<dl>
 		<dt>Prijs</dt>
-		<dd>${film.prijs}</dd>
+		<dd>&euro;&nbsp;<fmt:formatNumber value="${film.prijs}"/></dd>
 		<dt>Voorraad</dt>
 		<dd>${film.voorraad}</dd>
 		<dt>Gereserveerd</dt>

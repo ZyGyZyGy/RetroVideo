@@ -50,7 +50,7 @@ where klantid = 1 and filmid = 7;
 
 
 -- RESERVATIES
-select films.titel, concat(voornaam, " ", familienaam) as naam
+select concat(voornaam, " ", familienaam) as naam, films.titel, reservatieDatum
 from reservaties inner join klanten
 on reservaties.klantid = klanten.id
 inner join films
@@ -72,8 +72,8 @@ select *
 from films;
 
 update films
-set gereserveerd = 0
-where gereserveerd > 0;
+set gereserveerd = 2
+where voorraad = 3;
 
 
 
