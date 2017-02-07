@@ -7,7 +7,7 @@
 <vdab:head title="Rapport" />
 </head>
 <body> 
-	<a href=" <c:url value='/films.htm'/> " title="terug naar beginpagina">Reserveren</a>
+	<a href=" <c:url value='/'/> " title="terug naar beginpagina">Reserveren</a>
 	<h1>Rapport</h1>
 	<p>De reservatie is ${empty failedFilms ? "OK" : "MISLUKT"}
 	<c:if test="${not empty failedFilms}">

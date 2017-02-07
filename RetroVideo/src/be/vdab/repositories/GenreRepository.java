@@ -23,7 +23,6 @@ public class GenreRepository extends AbstractRepository {
 		Statement statement = connection.createStatement();
 		ResultSet resultSet = statement.executeQuery(FIND_ALL)) {
 	    Set<Genre> genres = new LinkedHashSet<>();
-//	    List<Genre> genres = new ArrayList<>();
 	    while (resultSet.next()) {
 		genres.add(resultSetNaarGenre(resultSet));
 	    }

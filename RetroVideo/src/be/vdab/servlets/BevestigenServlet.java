@@ -62,16 +62,6 @@ public class BevestigenServlet extends HttpServlet {
 	    Set<Long> mandje = (Set<Long>) session.getAttribute(MANDJE);
 	    long klantid = ((Klant) session.getAttribute("klant")).getId();
 	    Set<Film> mislukteFilms = new LinkedHashSet<>();
-//	    for (long filmid : mandje) {
-//		Film film = filmRepository.findFilmById(filmid).get();
-//		if (film.getVoorraad() > film.getGereserveerd()) {
-//		    filmRepository.updateReservaties(klantid, filmid);
-//		    filmRepository.updateGereserveerd(filmid);
-//		} else {
-//		    mislukteFilms.add(film);
-//		}
-//		session.setAttribute("mislukteFilms", mislukteFilms);
-//	    }
 	    mislukteFilms = filmRepository.recordToevoegen(klantid, mandje);
 	    session.setAttribute("mislukteFilms", mislukteFilms);
 

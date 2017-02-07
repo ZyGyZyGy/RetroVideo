@@ -7,7 +7,7 @@
 <vdab:head title="Pagina niet gevonden"/>
 </head>
 <body class="foutpagina">
-	<a href=" <c:url value='/films.htm'/> " title="terug naar beginpagina">Reserveren</a>
+	<a href=" <c:url value='/'/> " title="terug naar beginpagina">Reserveren</a>
 	<h1>Pagina niet gevonden (error 404)</h1>
 	<img src=" <c:url value='/images/popcorn.jpg'/> ">
 	<p>De pagina die u zocht bestaat niet op onze website</p>

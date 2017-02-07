@@ -7,7 +7,7 @@
 <vdab:head title="Bevestigen" />
 </head>
 <body>
-	<a href=" <c:url value='/films.htm'/> " title="terug naar beginpagina">Reserveren</a>
+	<a href=" <c:url value='/'/> " title="terug naar beginpagina">Reserveren</a>
 	<a href=" <c:url value='/films/reserveren.htm'/> " title="naar mandje">Mandje</a>
 	<a href=" <c:url value='/klant.htm'/> " title="naar klantengegevens">Klant</a>
 	<h1>Bevestigen</h1>

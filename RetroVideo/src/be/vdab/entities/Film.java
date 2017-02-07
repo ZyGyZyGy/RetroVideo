@@ -16,18 +16,6 @@ public class Film {
 	this.gereserveerd = gereserveerd;
 	this.prijs = prijs;
     }
-    
-//  public Film(long genreId, String titel, long voorraad, long gereserveerd, BigDecimal prijs) {
-//	this.genreId = genreId;
-//	this.titel = titel;
-//	this.voorraad = voorraad;
-//	this.gereserveerd = gereserveerd;
-//	this.prijs = prijs;
-//  }
-    
-//    public Film(String titel) {
-//	this.titel = titel;
-//    }
 
     public long getId() {
         return id;

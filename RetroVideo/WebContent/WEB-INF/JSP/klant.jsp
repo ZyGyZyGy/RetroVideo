@@ -7,7 +7,7 @@
 <vdab:head title="Klant" />
 </head>
 <body>
-	<a href=" <c:url value='/films.htm'/> " title="terug naar beginpagina">Reserveren</a>
+	<a href=" <c:url value='/'/> " title="terug naar beginpagina">Reserveren</a>
 	<a href=" <c:url value='/klant.htm'/> " title="naar klantengegevens">Klant</a>
 	<h1>Klant</h1>
 	<form>

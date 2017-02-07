@@ -25,6 +25,7 @@ public class KlantServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
+	request.setCharacterEncoding("UTF-8");
 	String familienaam = request.getParameter("familienaam");
 	if (familienaam != null) {
 	    if (familienaam.trim().isEmpty()) {

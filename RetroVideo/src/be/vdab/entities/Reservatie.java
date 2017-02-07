@@ -1,13 +1,13 @@
 package be.vdab.entities;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Reservatie {
 
     long klantid, filmdid;
-    LocalDate datum;
+    LocalDateTime datum;
 
-    public Reservatie(long klantid, long filmdid, LocalDate datum) {
+    public Reservatie(long klantid, long filmdid, LocalDateTime datum) {
 	this.klantid = klantid;
 	this.filmdid = filmdid;
 	this.datum = datum;
@@ -29,11 +29,11 @@ public class Reservatie {
         this.filmdid = filmdid;
     }
 
-    public LocalDate getDatum() {
+    public LocalDateTime getDatum() {
         return datum;
     }
 
-    public void setDatum(LocalDate datum) {
+    public void setDatum(LocalDateTime datum) {
         this.datum = datum;
     }
 

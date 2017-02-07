@@ -7,7 +7,7 @@
 <vdab:head title="${film.titel}" />
 </head>
 <body>
-	<a href=" <c:url value='/films.htm'/> " title="terug naar beginpagina">Reserveren</a>
+	<a href=" <c:url value='/'/> " title="terug naar beginpagina">Reserveren</a>
 	<h1>${film.titel}</h1>
 	<img class="filmPoster" src=" <c:url value='/images/${film.id}.jpg' /> " alt="${film.titel}">
 	<dl>

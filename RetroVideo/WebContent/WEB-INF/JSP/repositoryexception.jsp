@@ -7,7 +7,7 @@
 <vdab:head title="Database error"/>
 </head>
 <body class="foutpagina">
-	<a href=" <c:url value='/films.htm'/> " title="terug naar beginpagina">Reserveren</a>
+	<a href=" <c:url value='/'/> " title="terug naar beginpagina">Reserveren</a>
 	<h1>Probleem met de database</h1>
 	<img src=" <c:url value='/images/popcorn.jpg'/> ">
 	<p>Er is een fout opgetreden en uw request kon niet worden verwerkt.</p>
