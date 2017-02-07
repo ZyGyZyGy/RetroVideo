@@ -20,7 +20,7 @@ import be.vdab.repositories.GenreRepository;;
 @WebServlet("/index.htm")
 public class IndexServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final String VIEW = "/WEB-INF/JSP/index.jsp";
+    private static final String VIEW = "/WEB-INF/JSP/films.jsp";
     private final GenreRepository genreRepository = new GenreRepository();
     private final FilmRepository filmRepository = new FilmRepository();
 

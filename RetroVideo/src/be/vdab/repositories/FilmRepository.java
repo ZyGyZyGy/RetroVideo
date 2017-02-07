@@ -47,21 +47,6 @@ public class FilmRepository extends AbstractRepository {
     private static final Logger LOGGER = 
 	    Logger.getLogger(FilmRepository.class.getName());
     
-    public List<Film> findAll() {
-	try (Connection connection = dataSource.getConnection();
-		Statement statement = connection.createStatement();
-		ResultSet resultSet = statement.executeQuery(FIND_ALL)) {
-	    List<Film> films = new ArrayList<>();
-	    while (resultSet.next()) {
-		films.add(resultRijNaarFilm(resultSet));
-	    }
-	    return films;
-	} catch (SQLException ex) {
-	    LOGGER.log(Level.SEVERE, "Probleem met database retrovideo", ex);
-	    throw new RepositoryException(ex);
-	}
-    }
-    
     private Film resultRijNaarFilm(ResultSet resultSet) throws SQLException {
 	return new Film(
 		resultSet.getLong("filmid"), resultSet.getLong("genreid"), 
